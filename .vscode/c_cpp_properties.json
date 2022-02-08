@@ -12,6 +12,7 @@
                 "e:/Projects/Sandbox/lcd-16x2/src",
                 "C:/Users/frankw/.platformio/packages/framework-mbed",
                 "e:/Projects/Sandbox/lcd-16x2/.pio/build/nucleo_f413zh",
+                "C:/Users/frankw/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
@@ -21,6 +22,7 @@
                     "e:/Projects/Sandbox/lcd-16x2/src",
                     "C:/Users/frankw/.platformio/packages/framework-mbed",
                     "e:/Projects/Sandbox/lcd-16x2/.pio/build/nucleo_f413zh",
+                    "C:/Users/frankw/.platformio/packages/tool-unity",
                     ""
                 ]
             },

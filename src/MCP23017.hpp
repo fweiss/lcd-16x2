@@ -1,4 +1,18 @@
-#include "mbed.h"
+#ifndef MCP2307_H
+#define MCP2307_H
+
+/**
+ * @file MCP23017.hpp
+ * @author feweiss@gmail.com
+ * @brief A wrapper around I2CDevice for symbolic access the the MCP23017
+ * I2C GPIO port expander.
+ * @version 0.1
+ * @date 2022-01-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "I2CDevice.hpp"
 
 // hmm we want to use these locally, so need to undef the globals
@@ -9,7 +23,7 @@
 #undef GPIOA
 #undef GPIOB
 
-class MCP23017 : I2CDevice {
+class MCP23017 : public I2CDevice {
 public:
     MCP23017(I2C &i2c, uint8_t addr7);
 
@@ -17,9 +31,12 @@ public:
     void backlight(uint8_t color);
 
     enum reg {
-        IODIRA, IODIRB, 
+        IODIRA, IODIRB,
+        IPOLA, IPOLB,
+        IOCON = 0x0a,
         GPPUA = 0x0C, GPPUB,
-        GPIOA = 0X12, GPIOB,
+        GPIOA = 0x12, GPIOB,
+        OLATA, OLATB
     };
 private:
     void setup();
@@ -42,6 +59,8 @@ int MCP23017::readXXX() {
 }
 
 void MCP23017::backlight(uint8_t color) {
-    writeRegister(GPIOB, 0x01);
-    writeRegister(GPIOA, color ? 0xc0 : 0x00);
+    writeRegister(OLATB, 0x01);
+    writeRegister(OLATA, color ? 0xc0 : 0x00);
 }
+
+#endif // MCP2307_H
