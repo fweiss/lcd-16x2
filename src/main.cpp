@@ -6,9 +6,6 @@
 #include "mbed.h"
 #include "RGB_LCD_Shield.hpp"
 
-// #include "MCP23017.hpp"
-// #include "ST7066.hpp"
-
 #define WAIT_TIME_MS 100 
 DigitalOut led2(LED_RED);
 
@@ -22,10 +19,6 @@ int main()
 
     RgbLcdShield display(i2c, 0x20);
 
-    // MCP23017 mcp23017(i2c, 0x20);
-    // ST7066 st7066(mcp23017);
-    // st7066.setup();
-
     display.putcc('H');
     display.putcc('e');
     display.putcc('l');
@@ -38,26 +31,11 @@ int main()
     display.putcc('l');
     display.putcc('d');
     display.putcc('!');
-    // mcp23017.backlight(0);
-
-    
 
     while (true)
     {
         led2 = !led2;
         thread_sleep_for(WAIT_TIME_MS);
-        // uint8_t d = lcd.update();
-        // uint8_t d = mcp23017.readXXX();
-        // mcp23017.backlight(d & 1);
-
-        // display.write(0, 0x20);
-        // uint8_t busy = st7066.readBusyFlag();
-        // printf("busy: %x\n", busy);
-
-        // b = shield.buttons.status();
-        // shield.backlight.setColor(b & Shield.Buttons.SELECT);
-        // printf("lcd: %d\n", d);
-        // printf("lcd: %d\n", 55);
 
         const uint8_t buttons = display.getButtons();
         if (buttons & 0x01) { // select
