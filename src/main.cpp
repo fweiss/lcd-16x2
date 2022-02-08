@@ -6,8 +6,8 @@
 #include "mbed.h"
 #include "RGB_LCD_Shield.hpp"
 
-#include "MCP23017.hpp"
-#include "ST7066.hpp"
+// #include "MCP23017.hpp"
+// #include "ST7066.hpp"
 
 #define WAIT_TIME_MS 100 
 DigitalOut led2(LED_RED);
@@ -20,25 +20,25 @@ int main()
     // MCP23017 100k 400k 1700k
     i2c.frequency(100 * 1000);
 
-    RgbLcdShield(i2c, 0x20);
+    RgbLcdShield display(i2c, 0x20);
 
-    MCP23017 mcp23017(i2c, 0x20);
-    ST7066 st7066(mcp23017);
-    st7066.setup();
+    // MCP23017 mcp23017(i2c, 0x20);
+    // ST7066 st7066(mcp23017);
+    // st7066.setup();
 
-    st7066.putc('H');
-    st7066.putc('e');
-    st7066.putc('l');
-    st7066.putc('l');
-    st7066.putc('o');
-    st7066.putc(' ');
-    st7066.putc('W');
-    st7066.putc('o');
-    st7066.putc('r');
-    st7066.putc('l');
-    st7066.putc('d');
-    st7066.putc('!');
-    mcp23017.backlight(0);
+    display.putcc('H');
+    display.putcc('e');
+    display.putcc('l');
+    display.putcc('l');
+    display.putcc('o');
+    display.putcc(' ');
+    display.putcc('W');
+    display.putcc('o');
+    display.putcc('r');
+    display.putcc('l');
+    display.putcc('d');
+    display.putcc('!');
+    // mcp23017.backlight(0);
 
     
 
@@ -50,7 +50,7 @@ int main()
         // uint8_t d = mcp23017.readXXX();
         // mcp23017.backlight(d & 1);
 
-        // st7066.write(0, 0x20);
+        // display.write(0, 0x20);
         // uint8_t busy = st7066.readBusyFlag();
         // printf("busy: %x\n", busy);
 
@@ -59,5 +59,11 @@ int main()
         // printf("lcd: %d\n", d);
         // printf("lcd: %d\n", 55);
 
+        const uint8_t buttons = display.getButtons();
+        if (buttons & 0x01) { // select
+            display.setColor(true, true, true);
+        } else {
+            display.setColor(false, false, false);
+        }
     }
 }
