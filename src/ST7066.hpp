@@ -155,9 +155,10 @@ void ST7066::writeInstruction8Wait(uint8_t instruction) {
 void ST7066::writeData8Wait(uint8_t data) {
     const uint8_t rs = 0x80; // data register
     // eight bit data b7-b0 reversed in 32 bit b31-b24
+    // shift left 1 to align with GPIO output to st7066 data
     const uint32_t reverse = __RBIT(data);
-    uint8_t buf = (reverse >> 24-1) & 0x1e | rs;
-    uint8_t buf2 = (reverse >> 28-1) & 0x1e | rs;
+    uint8_t buf = ((reverse >> (24-1)) & 0x1e) | rs;
+    uint8_t buf2 = ((reverse >> (28-1)) & 0x1e) | rs;
     const uint8_t enable = 0x20;
     waitNotBusy();
     mcp23017.writeRegister(mcp23017.IODIRB, 0x00); // all bit output
