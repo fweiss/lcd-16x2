@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#ifndef I2C_RGB_LCD_SHIELD_H
+#define I2C_RGB_LCD_SHIELD_H
+
 #include "MCP23017.hpp"
 #include "ST7066.hpp"
 
@@ -15,9 +18,11 @@ class RgbLcdShield : private MCP23017 {
 public:
     RgbLcdShield(I2C &i2c, uint8_t addr7);
 
+    uint8_t getButtons();
+
     void setColor(bool red, bool green, bool blue);
     void putcc(char c);
-    uint8_t getButtons();
+    void setPosition(uint8_t pos, uint8_t line);
 private:
     ST7066 st7066;
 };
@@ -50,3 +55,9 @@ uint8_t RgbLcdShield::getButtons() {
     // active low
     return (~readRegister(GPIOA)) & 0x1f;
 }
+
+void RgbLcdShield::setPosition(uint8_t pos, uint8_t line) {
+    
+}
+
+#endif // I2C_RGB_LCD_SHIELD_H

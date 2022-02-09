@@ -1,3 +1,6 @@
+#ifndef MCP23017_H
+#define MCP23017_H
+
 #include "MCP23017.hpp"
 
 // DB0 - NC
@@ -176,3 +179,5 @@ void ST7066::putc(char c) {
     writeInstruction8Wait(0x04 | 0x02); // entry mode set: move cursor right
     writeData8Wait(c);
 }
+
+#endif MCP23017_H
