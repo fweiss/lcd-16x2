@@ -1,5 +1,5 @@
-#ifndef MCP23017_H
-#define MCP23017_H
+#ifndef ST7066_H
+#define ST7066_H
 
 #include "MCP23017.hpp"
 
@@ -38,6 +38,7 @@ public:
     void setup();
     uint8_t readBusyFlag();
     void putc(char c);
+    void setDramAddress(uint16_t addr);
 private:
     MCP23017 &mcp23017;
 
@@ -56,6 +57,24 @@ ST7066::ST7066(MCP23017 &mcp23017) : mcp23017(mcp23017) {
     backlight = 0x01;
     mcp23017.writeRegister(mcp23017.OLATB, backlight);
     mcp23017.writeRegister(mcp23017.IODIRB, 0x1e);
+}
+
+// initialize for 4-bit
+// big endian
+// only needed if power up init fails
+// but needed because power up init sets 8-bit mode
+void ST7066::setup() {
+    thread_sleep_for(15);
+    writeInstruction4(0x03);
+    thread_sleep_for(4);
+    writeInstruction4(0x03);
+    // 100 us
+    writeInstruction4(0x03);
+    writeInstruction4(0x02); // function set 4-bit
+    writeInstruction8Wait(0x20 | 0x02 | 0x00); // function set: lines, font size
+    writeInstruction8Wait(0x08); // display off
+    writeInstruction8Wait(0x01); // display clear
+    writeInstruction8Wait(0x04 | 0x00 | 0x00 ); // address inc/dec, display shift
 }
 
 void ST7066::write(uint8_t rs, uint8_t data) {
@@ -96,24 +115,6 @@ uint8_t ST7066::read(uint8_t rsx) {
     mcp23017.writeRegister(mcp23017.OLATB, buf); // end strobe
 
     return __RBIT(data << 27);
-}
-
-// initialize for 4-bit
-// big endian
-// only needed if power up init fails
-// but needed because power up init sets 8-bit mode
-void ST7066::setup() {
-    thread_sleep_for(15);
-    writeInstruction4(0x03);
-    thread_sleep_for(4);
-    writeInstruction4(0x03);
-    // 100 us
-    writeInstruction4(0x03);
-    writeInstruction4(0x02); // function set 4-bit
-    writeInstruction8Wait(0x20 | 0x02 | 0x00); // function set: lines, font size
-    writeInstruction8Wait(0x08); // display off
-    writeInstruction8Wait(0x01); // display clear
-    writeInstruction8Wait(0x04 | 0x00 | 0x00 ); // address inc/dec, display shift
 }
 
 uint8_t ST7066::readBusyFlag() {
@@ -180,4 +181,9 @@ void ST7066::putc(char c) {
     writeData8Wait(c);
 }
 
-#endif MCP23017_H
+void ST7066::setDramAddress(uint16_t addr) {
+    const uint8_t instruction = 0x80 | (addr & 0x7f);
+    writeInstruction8Wait(instruction);
+}
+
+#endif // ST7066_H

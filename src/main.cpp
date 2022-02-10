@@ -32,6 +32,9 @@ int main()
     display.putcc('d');
     display.putcc('!');
 
+    display.setPosition(3, 1);
+    display.putcc('G');
+
     while (true)
     {
         led2 = !led2;

@@ -31,6 +31,7 @@ RgbLcdShield::RgbLcdShield(I2C &i2c, uint8_t addr7) : MCP23017(i2c, addr7), st70
 
         writeRegister(OLATA, 0xc0); // backlight off
         writeRegister(GPPUA, 0x1f); // 4-0 button inputs
+        writeRegister(IPOLA, 0x1f); // buttons are inverted open-drain
         writeRegister(IODIRA, 0x3f); // 4-0 button inputs, 7-6 backlight outputs, 5 ?
 
         writeRegister(OLATB, 0x01); // backlight off
@@ -52,12 +53,14 @@ void RgbLcdShield::putcc(char c) {
 }
 
 uint8_t RgbLcdShield::getButtons() {
-    // active low
-    return (~readRegister(GPIOA)) & 0x1f;
+    // active low set in IPOLA
+    return readRegister(GPIOA) & 0x1f;
 }
 
 void RgbLcdShield::setPosition(uint8_t pos, uint8_t line) {
-    
+    // todo check bounds
+    const uint8_t addr = 0x40 | 3;
+    st7066.setDramAddress(addr);
 }
 
 #endif // I2C_RGB_LCD_SHIELD_H
