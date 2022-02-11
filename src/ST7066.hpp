@@ -38,7 +38,9 @@ public:
     void setup();
     uint8_t readBusyFlag();
     void putc(char c);
+
     void setDramAddress(uint16_t addr);
+    void setFunction();
 private:
     MCP23017 &mcp23017;
 
@@ -176,9 +178,17 @@ void ST7066::writeData8Wait(uint8_t data) {
 
 void ST7066::putc(char c) {
     writeInstruction8Wait(0x08 | 0x04); // display: on
-    writeInstruction8Wait(0x20 | 0x00 | 0x08); // function: 4 bit, 2 line
+    writeInstruction8Wait(0x20 | 0x00 | 0x08); // function: 8 bit, 2 line
+    // writeInstruction8Wait(0x20 | 0x00 | 0x00 | 0x04); // function: 8 bit, 1 line, 5x11 font
     writeInstruction8Wait(0x04 | 0x02); // entry mode set: move cursor right
     writeData8Wait(c);
+}
+
+
+void ST7066::setFunction() {
+    const uint8_t instruction = 0x20;
+    writeInstruction8Wait(instruction);
+
 }
 
 void ST7066::setDramAddress(uint16_t addr) {
