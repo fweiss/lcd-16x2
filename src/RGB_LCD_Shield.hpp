@@ -60,7 +60,7 @@ uint8_t RgbLcdShield::getButtons() {
 void RgbLcdShield::setPosition(uint8_t pos, uint8_t line) {
     // todo check bounds
     const uint8_t addr = 0x40 | 3;
-    st7066.setDramAddress(addr);
+    st7066.setDdramAddress(addr);
 }
 
 #endif // I2C_RGB_LCD_SHIELD_H

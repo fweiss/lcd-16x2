@@ -27,7 +27,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=50204",
+                "PLATFORMIO=50205",
                 "STM32F429xx",
                 "DEVICE_I2C",
                 "ARM_MATH_CM4",
