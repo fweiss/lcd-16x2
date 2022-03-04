@@ -39,6 +39,7 @@ public:
     uint8_t readBusyFlag();
     void putc(char c);
 
+    void setCursorOrDisplayShift(uint8_t cursorShift, uint8_t displayShift);
     void setDisplayOnOff(uint8_t bits);
     void setDdramAddress(uint16_t addr);
     void setFunction();
@@ -183,6 +184,11 @@ void ST7066::putc(char c) {
     // writeInstruction8Wait(0x20 | 0x00 | 0x00 | 0x04); // function: 8 bit, 1 line, 5x11 font
     writeInstruction8Wait(0x04 | 0x02); // entry mode set: move cursor right
     writeData8Wait(c);
+}
+
+void ST7066::setCursorOrDisplayShift(uint8_t cursorShift, uint8_t displayShift) {
+    const uint8_t instruction = 0x10 | (cursorShift & 0x08) | (displayShift & 0x04);
+    writeInstruction8Wait(instruction);
 }
 
 void ST7066::setDisplayOnOff(uint8_t bits) {

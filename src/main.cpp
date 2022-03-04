@@ -41,10 +41,13 @@ int main()
         thread_sleep_for(WAIT_TIME_MS);
 
         const uint8_t buttons = display.getButtons();
-        if (buttons & 0x01) { // select
+        if (buttons & RgbLcdShield::ButtonMask::select) {
             display.setColor(true, true, true);
         } else {
             display.setColor(false, false, false);
+        }
+        if (buttons & RgbLcdShield::ButtonMask::left) {
+            display.shiftCursorAndDisplay(RgbLcdShield::ShiftDirection::right);
         }
     }
 }
