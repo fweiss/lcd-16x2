@@ -47,7 +47,7 @@ int main()
             display.setColor(false, false, false);
         }
         if (buttons & RgbLcdShield::ButtonMask::left) {
-            display.shiftCursorAndDisplay(RgbLcdShield::ShiftDirection::right);
+            display.shiftCursorAndDisplay(RgbLcdShield::ShiftDirection::rightShift);
         }
     }
 }

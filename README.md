@@ -9,7 +9,7 @@ Also the nucleo-144 boards have Arduino-compatible sockets.
 
 I have gotten to like Visual Studio Code and have been playing around with the 
 Platform IO extension for developing and debugging IoT projects.
-I wanted to use PIO instead of the "standard" STM32CubeIDE, Keil, etc., which I felt would add and unwanted learning curve.
+I wanted to use PIO instead of the "standard" STM32CubeIDE, Keil, etc., which I felt would add an unwanted learning curve.
 
 I have done an I2C project on ESP32, interfacing with an IMU.
 I know that wasn't much, so doing another I2C project on a different plaform
@@ -18,6 +18,9 @@ would bolster my I2C chops.
 I don't expect the end result to be really useful.
 The tradeoff is that a project of limited scope is more likely to get completed.
 And the real payoff is learning new ways to do things.
+
+## Uploading with PIO
+
 
 ## Hardware
 Arduino shield fits on F413ZH
@@ -90,4 +93,6 @@ https://community.platformio.org/t/using-stm32cubemx-and-platformio/2611/35
 [MCP23017 Datasheet](https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf)
 
 [ST7066 datasheet](https://www.sparkfun.com/datasheets/LCD/st7066.pdf)
+
+[Using enums for bit masks](https://wiggling-bits.net/using-enum-classes-as-type-safe-bitmasks/)
 

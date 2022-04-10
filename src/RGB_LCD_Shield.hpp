@@ -26,8 +26,8 @@ public:
         left = 0x10
     };
     enum ShiftDirection {
-        left = 0,
-        right = 0x04
+        leftShift = 0,
+        rightShift = 0x04
     };
     
     uint8_t getButtons();
