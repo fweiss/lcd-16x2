@@ -23,7 +23,7 @@ And the real payoff is learning new ways to do things.
 
 
 ## Hardware
-Arduino shield fits on F413ZH
+Arduino shield fits on F413ZH and F429ZI.
 
 +5V
 GND
@@ -46,20 +46,19 @@ CN7-4 = D14 = I2C_A_SDA = PB9 = I2C1_SDA
 
 But display board also runs SCL SDA to the other corner
 
-
 SCL A5 PC0 PC3
 
 stmcube i2c
 
 ## Components
-- Adafruit RGB LCD Shield
+Adafruit RGB LCD Shield composed of:
 - MCP23017 I2C expander
 - HD44780LCD module
 - PCF 2119 IIC?
 - ST7066 Dot Matrix LCD Controller/Driver
 
 ### MCP23017
-Device address is 0x20, since A2-0 are hardwaired to GND
+Device address is 0x20, since A2-0 are hardwired to GND
 
 ## LCD
 HD44780LCD
@@ -95,4 +94,3 @@ https://community.platformio.org/t/using-stm32cubemx-and-platformio/2611/35
 [ST7066 datasheet](https://www.sparkfun.com/datasheets/LCD/st7066.pdf)
 
 [Using enums for bit masks](https://wiggling-bits.net/using-enum-classes-as-type-safe-bitmasks/)
-

@@ -1,7 +1,7 @@
 /**
  * @file RGB_LCD_Shield.hpp
  * @author Frank Weiss (feweiss@gmail.com)
- * @brief A composite for the AdaFruit RGB LCD Shield
+ * @brief A composite/facade for the AdaFruit RGB LCD Shield
  * @version 0.1
  * @date 2022-01-29
  * 
