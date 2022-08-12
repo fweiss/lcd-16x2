@@ -10,8 +10,7 @@
  * 
  */
 
-#ifndef MCP2307_H
-#define MCP2307_H
+#pragma once
 
 #include "I2CDevice.hpp"
 
@@ -38,8 +37,3 @@ public:
 private:
     void setup();
 };
-
-MCP23017::MCP23017(I2C &i2c, uint8_t addr7) : I2CDevice(i2c, addr7) {
-}
-
-#endif // MCP23017_H
