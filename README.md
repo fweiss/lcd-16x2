@@ -74,7 +74,8 @@ HD44780LCD
 - overuse of #defines is evil
 
 ## Notes
-I2C is 
+```
+I2C is big-endian over the wire
 MCP23017 is big-endian 7-0
 ST7066 7-0
 but module fips these MCP23017/ST7066
@@ -83,6 +84,7 @@ GPB3/DB5
 GPB2/DB6
 GPB1/DB7
 tip use CMSIS __RBIT intrinsic
+```
 
 ## Links and references
 https://community.platformio.org/t/using-stm32cubemx-and-platformio/2611/35
