@@ -33,9 +33,10 @@
 class ST7066 {
 public:
     ST7066(MCP23017 &mcp23017);
-    void write(uint8_t rs, uint8_t data);
+
     void setup();
     uint8_t readBusyFlag();
+    void write(uint8_t rs, uint8_t data);
     void putc(char c);
 
     void setCursorOrDisplayShift(uint8_t cursorShift, uint8_t displayShift);
@@ -45,8 +46,7 @@ public:
 private:
     MCP23017 &mcp23017;
 
-    uint8_t backlight; // needs to be or-ed inot GPIOB
-
+    uint8_t backlight; // needs to be or-ed into GPIOB
 
     void waitNotBusy();
     void writeInstruction4(uint8_t);
