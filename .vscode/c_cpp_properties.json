@@ -36,6 +36,7 @@
                 "PLATFORMIO=60106",
                 "STM32F429xx",
                 "DEVICE_I2C",
+                "ACTIVIY_LED=LED_RED",
                 "ARM_MATH_CM4",
                 "COMPONENT_FLASHIAP=1",
                 "DEVICE_ANALOGIN=1",
