@@ -7,7 +7,17 @@
 #include "RGB_LCD_Shield.hpp"
 
 #define WAIT_TIME_MS 100 
-DigitalOut led2(LED_RED);
+
+// #if PLATFORM == ststm32
+// DigitalOut led2(LED_RED);
+// #endif
+// #if PLATFORM == nordicnrf52
+// DigitalOut led2(LED1);
+// #endif
+
+// this depends on the platform
+// use PIO build_flags in platformio.ini
+DigitalOut led2(ACTIVITY_LED);
 
 // mbed i2c pins
 PinName const sda = D14;
