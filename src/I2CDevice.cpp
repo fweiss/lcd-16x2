@@ -24,19 +24,11 @@ uint8_t I2CDevice::readRegister(uint8_t reg) {
 void I2CDevice::writeRegister(uint8_t reg, uint8_t data) {
     status = 0;
     int err;
-    // char r[2];
-    // char d[1];
-    char buf[2];
-    buf[0] = reg;
-    buf[1] = data;
+    char buf[] { reg, data };
+    const bool repeated = false;
 
-    // r[0] = reg;
-    // r[1] = data;
-    // d[0] = data;
-    err = i2c.write(addr8bit, buf, sizeof(buf), false);
+    err = i2c.write(addr8bit, buf, sizeof(buf), repeated);
     status |= err ? 0x01 : 0x00;
-    // err = i2c.write(addr8bit, d, 1);
-    // status |= err ? 0x02 : 0x00;
     if (status) {
         printf("writeRegister: %x\n", status);
     }

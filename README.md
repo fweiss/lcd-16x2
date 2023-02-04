@@ -89,10 +89,4 @@ tip use CMSIS __RBIT intrinsic
 ## Links and references
 https://community.platformio.org/t/using-stm32cubemx-and-platformio/2611/35
 
-[Adafruit RGB LCD Shield](https://learn.adafruit.com/rgb-lcd-shield/downloads)
-
-[MCP23017 Datasheet](https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf)
-
-[ST7066 datasheet](https://www.sparkfun.com/datasheets/LCD/st7066.pdf)
-
 [Using enums for bit masks](https://wiggling-bits.net/using-enum-classes-as-type-safe-bitmasks/)
