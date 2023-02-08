@@ -31,7 +31,8 @@ int main() {
 
     I2C i2c(sda, scl);
     // MCP23017 100k 400k ok, 1700k not
-    i2c.frequency(400 * 1000);
+    // nRF52 couldn't handle 400k issue #1
+    i2c.frequency(100 * 1000);
 
     RgbLcdShield display(i2c, mcp23017_I2C_Address);
 
